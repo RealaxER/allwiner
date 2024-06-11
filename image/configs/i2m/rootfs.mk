@@ -146,8 +146,6 @@ root:
 	# 	echo "#misc_mod_list_late" >> $(OUTPUTDIR)/customer/demo.sh; \
 	# fi;
 
-	# =============Define here ============
-	# echo "pppd call air-ppp &" $(OUTPUTDIR)/customer/demo.sh;
 
 	sed -i 's/mi_common/insmod \/config\/modules\/$(KERNEL_VERSION)\/mi_common.ko\nmajor=\`cat \/proc\/devices \| busybox awk "\\\\$$2==\\""mi"\\" {print \\\\$$1}"\\n`\nminor=0/g' $(OUTPUTDIR)/customer/demo.sh; \
 	sed -i '/#mi module/a	major=`cat /proc/devices | busybox awk "\\\\$$2==\\""mi_poll"\\" {print \\\\$$1}"`\nbusybox mknod \/dev\/mi_poll c $$major 0' $(OUTPUTDIR)/customer/demo.sh; \
@@ -158,6 +156,13 @@ root:
 		cp  $(miservice$(RESOUCE))/demotemp.sh $(OUTPUTDIR)/customer/demo.sh ; \
 		rm  $(miservice$(RESOUCE))/demotemp.sh ; \
 	fi;
+
+	# =============Define here ============
+	echo "sleep 1" >> $(OUTPUTDIR)/customer/demo.sh
+	echo "pppd call air-ppp &" $(OUTPUTDIR)/customer/demo.sh
+	echo "route add default dev ppp0" $(OUTPUTDIR)/customer/demo.sh
+	echo "echo "nameserver 8.8.8.8" >> /etc/resolv.conf" >> $(OUTPUTDIR)/customer/demo.sh
+	echo "echo "nameserver 4.4.4.4" >> /etc/resolv.conf" >> $(OUTPUTDIR)/customer/demo.sh
 
 	if [ $(interface_wlan) = "enable" ]; then \
 		mkdir -p  $(miservice$(RESOUCE))/wifi ; \
@@ -225,12 +230,12 @@ root:
 	if [ "$(BOARD)" = "011A" ]; then \
 		sed -i 's/mi_sys.ko/mi_sys.ko cmdQBufSize=128 logBufSize=0/g' $(OUTPUTDIR)/customer/demo.sh ;\
 	fi;
-	# if [ $(TOOLCHAIN) = "glibc" ]; then \
-	# 	cp -rvf $(PROJ_ROOT)/tools/$(TOOLCHAIN)/$(TOOLCHAIN_VERSION)/htop/terminfo $(OUTPUTDIR)/miservice/config/;	\
-	# 	cp -rvf $(PROJ_ROOT)/tools/$(TOOLCHAIN)/$(TOOLCHAIN_VERSION)/htop/htop $(OUTPUTDIR)/customer/;	\
-	# 	echo export TERM=vt102 >> $(OUTPUTDIR)/customer/demo.sh;	\
-	# 	echo export TERMINFO=/config/terminfo >> $(OUTPUTDIR)/customer/demo.sh;	\
-	# fi;
+	if [ $(TOOLCHAIN) = "glibc" ]; then \
+		cp -rvf $(PROJ_ROOT)/tools/$(TOOLCHAIN)/$(TOOLCHAIN_VERSION)/htop/terminfo $(OUTPUTDIR)/miservice/config/;	\
+		cp -rvf $(PROJ_ROOT)/tools/$(TOOLCHAIN)/$(TOOLCHAIN_VERSION)/htop/htop $(OUTPUTDIR)/customer/;	\
+		echo export TERM=vt102 >> $(OUTPUTDIR)/customer/demo.sh;	\
+		echo export TERMINFO=/config/terminfo >> $(OUTPUTDIR)/customer/demo.sh;	\
+	fi;
 	
 	mkdir -p $(OUTPUTDIR)/vendor
 	mkdir -p $(OUTPUTDIR)/customer
