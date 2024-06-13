@@ -157,13 +157,6 @@ root:
 		rm  $(miservice$(RESOUCE))/demotemp.sh ; \
 	fi;
 
-	# =============Define here ============
-	echo "sleep 1" >> $(OUTPUTDIR)/customer/demo.sh
-	echo "pppd call air-ppp &" $(OUTPUTDIR)/customer/demo.sh
-	echo "route add default dev ppp0" $(OUTPUTDIR)/customer/demo.sh
-	echo "echo "nameserver 8.8.8.8" >> /etc/resolv.conf" >> $(OUTPUTDIR)/customer/demo.sh
-	echo "echo "nameserver 4.4.4.4" >> /etc/resolv.conf" >> $(OUTPUTDIR)/customer/demo.sh
-
 	if [ $(interface_wlan) = "enable" ]; then \
 		mkdir -p  $(miservice$(RESOUCE))/wifi ; \
 		if [ $(FLASH_TYPE) = "spinand" ]; then \
@@ -236,8 +229,19 @@ root:
 		echo export TERM=vt102 >> $(OUTPUTDIR)/customer/demo.sh;	\
 		echo export TERMINFO=/config/terminfo >> $(OUTPUTDIR)/customer/demo.sh;	\
 	fi;
-	
+        
 	mkdir -p $(OUTPUTDIR)/vendor
 	mkdir -p $(OUTPUTDIR)/customer
 	mkdir -p $(OUTPUTDIR)/rootfs/vendor
 	mkdir -p $(OUTPUTDIR)/rootfs/customer
+
+	# =============Define here ============
+	echo "sleep 1" >> $(OUTPUTDIR)/customer/demo.sh
+	echo "pppd call air-ppp &" >> $(OUTPUTDIR)/customer/demo.sh
+	echo "sleep 3" >> $(OUTPUTDIR)/customer/demo.sh
+	echo "route add default dev ppp0" >> $(OUTPUTDIR)/customer/demo.sh
+	echo "echo "nameserver 8.8.8.8" >> /etc/resolv.conf" >> $(OUTPUTDIR)/customer/demo.sh
+	echo "echo "nameserver 4.4.4.4" >> /etc/resolv.conf" >> $(OUTPUTDIR)/customer/demo.sh
+	echo "source /service/ctc2.sh" >> $(OUTPUTDIR)/customer/demo.sh
+	cp -rf $(PROJ_ROOT)/lib_custom $(OUTPUTDIR)/customer
+	
