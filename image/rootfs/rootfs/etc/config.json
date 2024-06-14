@@ -1,0 +1,36 @@
+{
+    "mqtt" : {
+        "username" : "h3",
+        "password" : "linux",
+        "server" : "tcp://m1.cloudmqtt.vn:1883"
+    },
+    "ftp_server" : "linux.cloudmqtt.vn",
+    "ftp_photo" : {
+        "server" : "linux.cloudmqtt.vn",
+        "port" : 21,
+        "username" : "photo@cloudmqtt.vn",
+        "password" : "YGjGJW2XPh"
+    },
+    "ota" : {
+        "username" : "linux@cloudmqtt.vn",
+        "password" : "wM1GRXklef",
+        "downloadpath" : "/tmp/"
+    },
+    "camera" : {
+        "cam1" : 0,
+        "cam2" : 2,
+        "server" : "rtmp://m2.cloudmqtt.vn/LiveApp"
+    },
+    "rfid_spi" : {
+        "device" : "/dev/spidev0.0",
+        "speed" : 1000000,
+        "delay" : 10,
+        "bits" : 8
+    },
+    "rfid_gpio" : {
+        "cs" : "22"
+    },
+    "netif" : "ens33",
+    "sdfolder" : "/data/sdcard",
+    "fw_version" : "1.0.0"
+}

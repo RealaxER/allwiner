@@ -203,9 +203,9 @@ root:
 		echo "echo 85 > /sys/class/gpio/export" >> $(OUTPUTDIR)/rootfs/etc/init.d/rcS; \
 		echo "echo out > /sys/class/gpio/gpio85/direction" >> $(OUTPUTDIR)/rootfs/etc/init.d/rcS; \
 		# echo "echo 0 > /sys/class/gpio/gpio85/value" >> $(OUTPUTDIR)/rootfs/etc/init.d/rcS; \
-		# echo "echo 47 > /sys/class/gpio/export" >> $(OUTPUTDIR)/rootfs/etc/init.d/rcS; \
-		# echo "echo out > /sys/class/gpio/gpio47/direction" >> $(OUTPUTDIR)/rootfs/etc/init.d/rcS; \
-		# echo "echo 0 > /sys/class/gpio/gpio47/value" >> $(OUTPUTDIR)/rootfs/etc/init.d/rcS; \
+		echo "echo 6 > /sys/class/gpio/export" >> $(OUTPUTDIR)/rootfs/etc/init.d/rcS; \
+		echo "echo out > /sys/class/gpio/gpio6/direction" >> $(OUTPUTDIR)/rootfs/etc/init.d/rcS; \
+		echo "echo 1 > /sys/class/gpio/gpio6/value" >> $(OUTPUTDIR)/rootfs/etc/init.d/rcS; \
 	fi;
 
 	echo "if [ -e /etc/core.sh ]; then" >> ${OUTPUTDIR}/rootfs/etc/init.d/rcS
@@ -238,7 +238,7 @@ root:
 	# =============Define here ============
 	echo "sleep 1" >> $(OUTPUTDIR)/customer/demo.sh
 	echo "pppd call air-ppp &" >> $(OUTPUTDIR)/customer/demo.sh
-	echo "sleep 3" >> $(OUTPUTDIR)/customer/demo.sh
+	echo "sleep 10" >> $(OUTPUTDIR)/customer/demo.sh
 	echo "route add default dev ppp0" >> $(OUTPUTDIR)/customer/demo.sh
 	echo "echo "nameserver 8.8.8.8" >> /etc/resolv.conf" >> $(OUTPUTDIR)/customer/demo.sh
 	echo "echo "nameserver 4.4.4.4" >> /etc/resolv.conf" >> $(OUTPUTDIR)/customer/demo.sh
