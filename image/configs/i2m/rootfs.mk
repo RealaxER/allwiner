@@ -242,6 +242,6 @@ root:
 	echo "route add default dev ppp0" >> $(OUTPUTDIR)/customer/demo.sh
 	echo "echo "nameserver 8.8.8.8" >> /etc/resolv.conf" >> $(OUTPUTDIR)/customer/demo.sh
 	echo "echo "nameserver 4.4.4.4" >> /etc/resolv.conf" >> $(OUTPUTDIR)/customer/demo.sh
-	echo "source /service/ctc2.sh" >> $(OUTPUTDIR)/customer/demo.sh
+	# echo "source /service/ctc2.sh" >> $(OUTPUTDIR)/customer/demo.sh
 	cp -rf $(PROJ_ROOT)/lib_custom $(OUTPUTDIR)/customer
 	

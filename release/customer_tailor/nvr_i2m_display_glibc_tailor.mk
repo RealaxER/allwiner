@@ -36,5 +36,5 @@ mhal_vpe:=disable
 mhal_hdmitx:=disable
 
 verify_jpeg2disp=disable
-verify_disp_init=enable
+# verify_disp_init=disable
 
