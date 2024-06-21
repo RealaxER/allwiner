@@ -60,6 +60,9 @@ echo "source /service/ctc2.sh" >> $(OUTPUTDIR)/customer/demo.sh
 
 # BUILD IMAGE 
 ```bash
+cd project 
+make clean
+cd ..
 ./Release_to_customer.sh -f nand -p ssd202 -o 2D07
 cd project
 ./make_sd_upgrade_sigmastar.sh 
